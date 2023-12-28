@@ -30,25 +30,20 @@ export default function Home() {
   return (
     <div>
       <h1>Data from Google Sheet</h1>
-      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-        <thead style={{ backgroundColor: 'blue', color: 'white' }}>
+      <table>
+        <thead>
           <tr>
             {/* Assuming the first row contains headers */}
-            {data.length > 0 &&
-              data[0].map((header, index) => (
-                <th key={index} style={{ border: '1px solid white', padding: '8px' }}>
-                  {header}
-                </th>
-              ))}
+            {data.length > 0 && data[0].map((header, index) => (
+              <th key={index}>{header}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {data.map((row, index) => (
             <tr key={index}>
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex} style={{ border: '1px solid blue', padding: '8px', backgroundColor: 'white' }}>
-                  {cell}
-                </td>
+                <td key={cellIndex}>{cell}</td>
               ))}
             </tr>
           ))}
