@@ -8,7 +8,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyw0BbA2I98d8kXg7cEza-r7PtwLVbAfXYX6cfzuufJZeAqbi-JYJWBPIID8PCWaJEv/exec');
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyWQDymrYy4TSZL1AV7LD67Jsu35Eli4PIP8e4fW8NWByuY8j13VtfiJVz2qMS3khp5kg/exec');
         const jsonData = await response.json();
 
         console.log('Received data:', jsonData); // Log the received data
@@ -30,20 +30,25 @@ export default function Home() {
   return (
     <div>
       <h1>Data from Google Sheet</h1>
-      <table>
-        <thead>
+      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <thead style={{ backgroundColor: 'blue', color: 'white' }}>
           <tr>
             {/* Assuming the first row contains headers */}
-            {data.length > 0 && data[0].map((header, index) => (
-              <th key={index}>{header}</th>
-            ))}
+            {data.length > 0 &&
+              data[0].map((header, index) => (
+                <th key={index} style={{ border: '1px solid white', padding: '8px' }}>
+                  {header}
+                </th>
+              ))}
           </tr>
         </thead>
         <tbody>
           {data.map((row, index) => (
             <tr key={index}>
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex}>{cell}</td>
+                <td key={cellIndex} style={{ border: '1px solid blue', padding: '8px', backgroundColor: 'white' }}>
+                  {cell}
+                </td>
               ))}
             </tr>
           ))}
