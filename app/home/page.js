@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyWQDymrYy4TSZL1AV7LD67Jsu35Eli4PIP8e4fW8NWByuY8j13VtfiJVz2qMS3khp5kg/exec');
+        // Update the fetch URL to include the user's search term
+        const response = await fetch(`https://script.google.com/macros/s/AKfycbz6lusc9Go52j7lEq0kLue4f7Et-z-BzyBB6LfFQkRZCU2wRwXB1pEJCQX3WxLy_KpCSw/exec?search=${searchTerm}`);
         const jsonData = await response.json();
 
         console.log('Received data:', jsonData); // Log the received data
@@ -25,11 +27,21 @@ export default function Home() {
     };
 
     fetchData();
-  }, []);
+  }, [searchTerm]);
+
+  const handleSearchInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <div>
-      <h1>Data from Google Sheet</h1>
+      <h1>Data from Data Base</h1>
+      {/* Input for user to enter search term */}
+      <label>
+        Search:
+        <input type="text" value={searchTerm} onChange={handleSearchInputChange} />
+      </label>
+
       <table>
         <thead>
           <tr>
