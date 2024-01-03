@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Data from Data Base</h1>
+      <h1>Data from DataBase</h1>
       {/* Input for user to enter search term */}
       <label>
         Search:
